@@ -16,13 +16,12 @@ from django.urls import reverse
 ...
 @login_required(login_url='/wishlist/login/')
 
-
-
 def show_wishlist(request):
     data_barang_wishlist = BarangWishlist.objects.all()
     context = {
+
         'list_barang': data_barang_wishlist,
-        'nama': 'Kak Cinoy',
+        'nama': 'Ramanti',
         'last_login': request.COOKIES['last_login'],
     }
     return render(request, "wishlist.html", context)
@@ -68,8 +67,6 @@ def login_user(request):
             response.set_cookie('last_login', str(datetime.datetime.now())) # membuat cookie last_login dan menambahkannya ke dalam response
             return response
 
-            login(request, user)
-            return redirect('wishlist:show_wishlist')
         else:
             messages.info(request, 'Username atau Password salah!')
     context = {}
