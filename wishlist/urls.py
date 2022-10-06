@@ -7,6 +7,8 @@ from wishlist.views import show_xml_by_id
 from wishlist.views import register #sesuaikan dengan nama fungsi yang dibuat
 from wishlist.views import login_user #sesuaikan dengan nama fungsi yang dibuat
 from wishlist.views import logout_user #sesuaikan dengan nama fungsi yang dibuat
+from wishlist.views import show_wishlist_ajax
+from wishlist.views import add_ajax
 app_name = 'wishlist'
 
 urlpatterns = [
@@ -18,5 +20,7 @@ urlpatterns = [
     path('register/', register, name='register'), #sesuaikan dengan nama fungsi yang dibuat
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'), #sesuaikan dengan nama fungsi yang dibuat
+    path('ajax/', show_wishlist_ajax, name='show_wishlist_ajax'),
+    path('ajax/add/', add_ajax, name='add_ajax'),
 
 ]

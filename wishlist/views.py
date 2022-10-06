@@ -79,3 +79,23 @@ def logout_user(request):
     return response
 
 
+@login_required(login_url='/wishlist/login/')
+def show_wishlist_ajax(request):
+    context = {
+        'nama': 'Ramanti',
+        'last_login': request.COOKIES['last_login'],
+    }
+    return render(request, 'wishlist_ajax.html', context)
+
+@login_required(login_url='/wishlist/login/')
+def add_ajax(request):
+    if request.method == 'POST':
+        nama_barang = request.POST.get('nama_barang')
+        harga_barang = request.POST.get('harga_barang')
+        deskripsi = request.POST.get('deskripsi')
+        new_barang = BarangWishlist(nama_barang = nama_barang, harga_barang = harga_barang, deskripsi = deskripsi)
+        new_barang.save()
+    return HttpResponseRedirect('/wishlist/ajax/')
+
+
+
